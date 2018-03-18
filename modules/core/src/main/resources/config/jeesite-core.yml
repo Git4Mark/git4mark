@@ -122,7 +122,7 @@ companyName: ThinkGem
 demoMode: false
 
 #管理基础路径
-adminPath: /a
+adminPath: /manager
 
 #前端基础路径
 frontPath: /f
