@@ -10,7 +10,7 @@
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 	
-	<artifactId>jeesite-web</artifactId>
+	<artifactId>jeesite4</artifactId>
 	<packaging>war</packaging>
 	
 	<name>JeeSite Boot</name>
@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>provided</scope>
+			<scope>1.5.2.RELEASE</scope>
 		</dependency>
 		
 		<!-- 核心模块 -->
