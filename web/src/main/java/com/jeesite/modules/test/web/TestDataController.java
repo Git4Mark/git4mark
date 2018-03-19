@@ -6,6 +6,9 @@ package com.jeesite.modules.test.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +32,7 @@ import com.jeesite.modules.test.service.TestDataService;
  */
 @Controller
 @RequestMapping(value = "${adminPath}/test/testData")
+@Api(tags = "测试数据控制器",description = "查询测试数据")
 public class TestDataController extends BaseController {
 
 	@Autowired
@@ -45,6 +49,7 @@ public class TestDataController extends BaseController {
 	/**
 	 * 查询列表
 	 */
+	@ApiOperation(value = "测试数据列表",notes = "获取测试数据查询列表")
 	@RequiresPermissions("test:testData:view")
 	@RequestMapping(value = {"list", ""})
 	public String list(TestData testData, Model model) {
@@ -58,6 +63,7 @@ public class TestDataController extends BaseController {
 	@RequiresPermissions("test:testData:view")
 	@RequestMapping(value = "listData")
 	@ResponseBody
+	@ApiOperation(value = "数据分页列表",notes = "获取数据分页查询列表")
 	public Page<TestData> listData(TestData testData, HttpServletRequest request, HttpServletResponse response) {
 		Page<TestData> page = testDataService.findPage(new Page<TestData>(request, response), testData); 
 		return page;
@@ -68,6 +74,7 @@ public class TestDataController extends BaseController {
 	 */
 	@RequiresPermissions("test:testData:view")
 	@RequestMapping(value = "form")
+	@ApiOperation(value = "查看编辑表单",notes = "查看编辑表单")
 	public String form(TestData testData, Model model) {
 		model.addAttribute("testData", testData);
 		return "modules/test/testDataForm";
@@ -79,6 +86,7 @@ public class TestDataController extends BaseController {
 	@RequiresPermissions("test:testData:edit")
 	@PostMapping(value = "save")
 	@ResponseBody
+	@ApiOperation(value = "保存数据",notes = "保存数据")
 	public String save(@Validated TestData testData) {
 		testDataService.save(testData);
 		return renderResult(Global.TRUE, "保存数据成功！");
@@ -90,6 +98,7 @@ public class TestDataController extends BaseController {
 	@RequiresPermissions("test:testData:edit")
 	@RequestMapping(value = "disable")
 	@ResponseBody
+	@ApiOperation(value = "停用数据",notes = "停用数据")
 	public String disable(TestData testData) {
 		testData.setStatus(TestData.STATUS_DISABLE);
 		testDataService.updateStatus(testData);
@@ -102,6 +111,7 @@ public class TestDataController extends BaseController {
 	@RequiresPermissions("test:testData:edit")
 	@RequestMapping(value = "enable")
 	@ResponseBody
+	@ApiOperation(value = "启用数据",notes = "启用数据")
 	public String enable(TestData testData) {
 		testData.setStatus(TestData.STATUS_NORMAL);
 		testDataService.updateStatus(testData);
@@ -114,6 +124,7 @@ public class TestDataController extends BaseController {
 	@RequiresPermissions("test:testData:edit")
 	@RequestMapping(value = "delete")
 	@ResponseBody
+	@ApiOperation(value = "删除数据",notes = "删除数据")
 	public String delete(TestData testData) {
 		testDataService.delete(testData);
 		return renderResult(Global.TRUE, "删除数据成功！");

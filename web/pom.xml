@@ -33,7 +33,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
-			<scope>1.5.2.RELEASE</scope>
+			<scope>compile</scope>
 		</dependency>
 		
 		<!-- 核心模块 -->
@@ -49,6 +49,19 @@
 			<artifactId>jeesite-module-devtools</artifactId>
 			<version>${project.parent.version}</version>
  		</dependency>
+
+		<!--可视化API-->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.7.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.7.0</version>
+		</dependency>
 		
 		<!-- 内容管理模块 
 		<dependency>
